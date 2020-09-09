@@ -1,0 +1,299 @@
+<!-- 
+<div style="text-align:center">
+  <h1>
+      Welcome to {{ title }}!
+  </h1>
+
+  <form>
+    <div class="form-group">
+      <mat-form-field >
+        <textarea matInput placeholder = "Textarea"></textarea>
+        <input matInput class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+     </mat-form-field>
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+  <div class = "tp-container">
+    <mat-form-field appearance = "standard">
+       <input matInput placeholder = "Input">
+       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+       <mat-hint>Sample Hint</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance = "fill">
+       <textarea matInput placeholder = "Textarea"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance = "outline">
+       <mat-select placeholder = "Select">
+          <mat-option value = "A">A</mat-option>
+          <mat-option value = "B">B</mat-option>
+          <mat-option value = "C">C</mat-option>      
+       </mat-select>
+    </mat-form-field>
+ </div>
+</div> -->
+
+<h1>{{title}}</h1>
+
+<form [formGroup]="empform" (ngSubmit)="onSubmit()">
+
+  <div formArrayName="questions">
+    <div *ngFor="let employee of questions().controls; let empIndex=index">
+
+      <div *ngIf="selectfield(employee)">
+        <div [formGroupName]="empIndex" class="text-center">
+
+           <mat-form-field class="col-md-4">
+
+            <mat-label>Question</mat-label>
+            
+            <input matInput placeholder="Question Title" formControlName="firstName">
+
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4">
+
+            <mat-label>Question Position</mat-label>
+
+            <input matInput placeholder="Question Position" formControlName="lastName">
+
+          </mat-form-field>
+
+          <button mat-mini-fab color="primary" (click)="addEmployee()"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>add</mat-icon>
+
+          </button>
+
+          <button mat-mini-fab color="warn" (click)="removeEmployee(empIndex)"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>delete</mat-icon>
+
+          </button>
+
+        </div>
+      </div>
+
+      <div  *ngIf="!selectfield(employee)">
+        <mat-card [formGroupName]="empIndex"
+        style="border: 1px solid rgba(12, 148, 85, 0.733); background-image: linear-gradient(rgb(203, 240, 214), rgb(255, 255, 255)); width: 900px;">
+
+        <div class="text-center">
+
+          <mat-form-field class="col-md-4">
+
+            <mat-label>Form Title</mat-label>
+
+            <strong> <input matInput placeholder="Form Title" formControlName="formtitle"> </strong>
+
+          </mat-form-field>
+
+          <button mat-small mat-raised-button color="primary" (click)="addnewFormElement(contactIndex)">Add New
+            Element</button>
+
+          <button mat-mini-fab color="warn" (click)="removeContact(contactIndex)"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>delete</mat-icon>
+
+          </button>
+
+        </div>
+
+        <!-- <div formArrayName="formelement"> -->
+<!-- 
+          <div *ngFor="let element of formElements(contactIndex).controls; let elementIndex=index">
+
+            <mat-card [formGroupName]="elementIndex" style="width: 800px;">
+
+              <div class="text-center">
+
+                <mat-form-field class="col-md-3">
+
+                  <mat-label>Element Title</mat-label>
+
+                  <input matInput placeholder="Element Title" formControlName="elementTitle">
+
+                </mat-form-field>
+
+                <mat-form-field class="col-md-3">
+
+                  <mat-label>Element Position</mat-label>
+
+                  <input matInput placeholder="Element Position" formControlName="elementPosition">
+
+                </mat-form-field>
+
+                <button mat-mini-fab color="primary" (click)="addnewFormElement(contactIndex)"
+                  aria-label="Example icon button with a delete icon">
+
+                  <mat-icon>add</mat-icon>
+
+                </button>
+
+                <button mat-raised-button color="warn" (click)="removeFormElement(contactIndex,elementIndex)">Remove
+                  Element</button>
+
+              </div>
+
+            </mat-card>
+          </div> -->
+        <!-- </div> -->
+
+        <div style="margin: 5px;"></div>
+
+      </mat-card>
+      </div>
+      <button type="button" class="btn btn-outline-primary" (click) = "checkitem(employee)">Check Item</button>
+      
+      <mat-card [formGroupName]="empIndex"
+        style="background-image: linear-gradient(rgb(203, 240, 214), rgb(203, 240, 214)); width: 900px;">
+
+        <!--<div class="text-center">
+
+           <mat-form-field class="col-md-4">
+
+            <mat-label>Question</mat-label>
+            
+            <input matInput placeholder="Question Title" formControlName="firstName">
+
+          </mat-form-field>
+
+          <mat-form-field class="col-md-4">
+
+            <mat-label>Question Position</mat-label>
+
+            <input matInput placeholder="Question Position" formControlName="lastName">
+
+          </mat-form-field>
+
+          <button mat-mini-fab color="primary" (click)="addEmployee()"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>add</mat-icon>
+
+          </button>
+
+          <button mat-mini-fab color="warn" (click)="removeEmployee(empIndex)"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>delete</mat-icon>
+
+          </button>
+
+        </div> -->
+
+      </mat-card>
+
+    </div>
+  </div>
+
+  <div style="margin: 5px;"></div>
+
+  <!-- <div formArrayName="contacts">
+
+    <div *ngFor="let contact of contacts().controls; let contactIndex=index">
+
+      <mat-card [formGroupName]="contactIndex"
+        style="border: 1px solid rgba(12, 148, 85, 0.733); background-image: linear-gradient(rgb(203, 240, 214), rgb(255, 255, 255)); width: 900px;">
+
+        <div class="text-center">
+
+          <mat-form-field class="col-md-4">
+
+            <mat-label>Form Title</mat-label>
+
+            <strong> <input matInput placeholder="Form Title" formControlName="formtitle"> </strong>
+
+          </mat-form-field>
+
+          <button mat-small mat-raised-button color="primary" (click)="addnewFormElement(contactIndex)">Add New
+            Element</button>
+
+          <button mat-mini-fab color="warn" (click)="removeContact(contactIndex)"
+            aria-label="Example icon button with a delete icon">
+
+            <mat-icon>delete</mat-icon>
+
+          </button>
+
+        </div>
+
+        <div formArrayName="formelement">
+
+          <div *ngFor="let element of formElements(contactIndex).controls; let elementIndex=index">
+
+            <mat-card [formGroupName]="elementIndex" style="width: 800px;">
+
+              <div class="text-center">
+
+                <mat-form-field class="col-md-3">
+
+                  <mat-label>Element Title</mat-label>
+
+                  <input matInput placeholder="Element Title" formControlName="elementTitle">
+
+                </mat-form-field>
+
+                <mat-form-field class="col-md-3">
+
+                  <mat-label>Element Position</mat-label>
+
+                  <input matInput placeholder="Element Position" formControlName="elementPosition">
+
+                </mat-form-field>
+
+                <button mat-mini-fab color="primary" (click)="addnewFormElement(contactIndex)"
+                  aria-label="Example icon button with a delete icon">
+
+                  <mat-icon>add</mat-icon>
+
+                </button>
+
+                <button mat-raised-button color="warn" (click)="removeFormElement(contactIndex,elementIndex)">Remove
+                  Element</button>
+
+              </div>
+
+            </mat-card>
+          </div>
+        </div>
+
+        <div style="margin: 5px;"></div>
+
+      </mat-card>
+
+      <div style="margin: 5px;"></div>
+    </div>
+  </div> -->
+
+  <p>
+
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+
+  </p>
+
+  <p>
+
+    <button mat-raised-button color="primary" type="button" (click)="addEmployee()">Add New Question</button>
+
+    <button mat-raised-button color="primary" type="button" (click)="addContact()">Add New Form</button>
+
+  </p>
+
+</form>
+
+{{this.empform.value | json}}
