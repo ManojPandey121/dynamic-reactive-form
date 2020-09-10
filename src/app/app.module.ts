@@ -12,10 +12,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common'; 
+import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatButtonModule} from '@angular/material/button';
+
 
 
 const MATERIAL_MODULE = [MatFormFieldModule,
@@ -33,14 +34,15 @@ const MATERIAL_MODULE = [MatFormFieldModule,
     QuestionComponent
   ],
   imports: [
-    BrowserModule, 
-    BrowserAnimationsModule, 
-    FormsModule, 
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
-    MatCardModule
+    MatCardModule,
+    ...MATERIAL_MODULE
     // BrowserModule,
     // AppRoutingModule,
     // BrowserAnimationsModule,

@@ -1,30 +1,78 @@
 p {
    font-family: Lato;
  }
- 
+ mat-card{
+     max-width: 900px;
+    //  text-align: center;
+     margin: 0 auto;
+ }
+
  .primary-container {
-   margin: 5px;
-   margin-bottom: 15px;
+//    margin: 5px;
+//    margin-bottom: 15px;
+   text-align: center;
  }
- 
- .primary-container mat-form-field {
-   margin-right: 10px;
- }
- 
- .address-container {
-   margin-bottom: 15px;
-   padding: 5px;
- }
- 
- .address-container div mat-form-field {
-   margin-right: 10px;
- }
- 
- .address-container div {
-   padding: 5px;
-   margin-bottom: 10px;
- }
- 
+ .questionnaire {
+       text-align: left;
+     }
+
+     .input-width{
+         width: 400px;
+     }
+
+//  .primary-container mat-form-field {
+//    margin-right: 10px;
+//  }
+ mat-form-field {
+    margin-right: 10px;
+  }
+
+//  .address-container {
+//    margin-bottom: 15px;
+// //    padding: 5px;
+//  }
+// .mat-form-field-infix {
+//     padding: .5em 0;
+//     border-top: 0em;
+// }
+/* Angular Material Overrides */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #ccc; /* Override outline color. */
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: .65em 0; /* Original top/bottom value was 1em. */
+  }
+
+
+  .mat-input-element {
+    position: relative;
+    // font-size: 20px;
+    // text-align: center;
+    // top:  -1.2em; /* Adjust accordingly to keep placeholder/input text vertically centered. */
+  }
+
+  .mat-form-field-label-wrapper {
+    top: -1.2em; /* Adjust accordingly to keep <mat-label> text vertically centered. */
+  }
+
+  .mat-form-field-wrapper {
+    position: relative;
+    margin-right: 20px;
+}
+ .form-element{
+    margin-left: 30px;
+   }
+
+//  .address-container div {
+// //    padding: 5px;
+// //    margin-bottom: 10px;
+//  }
+
  .pre-code {
    margin-top: 25px;
+ }
+
+ mat-label{
+     margin: 10px;
  }

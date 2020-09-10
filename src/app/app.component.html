@@ -1,148 +1,178 @@
-<form class="example-form" [formGroup]="userForm">
-  <div>
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Users Creation</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="primary-container">
-          <mat-form-field>
-            <input matInput placeholder="First Name" value="" formControlName="firstName">
-          </mat-form-field>
-          <mat-form-field>
-            <input matInput placeholder="Last Name" value="" formControlName="lastName">
-          </mat-form-field>
-        </div>
-        <div formArrayName="address">
-          <div class="address-container" *ngFor="let group of addressArray.controls; let i = index;"
-            [formGroupName]="i">
-            <div *ngIf="!selectfield(group)">
-              <fieldset>
-                <legend>
-                  <h3>{{i + 1}}</h3>
-                </legend>
-                <div>
-                  <mat-form-field>
-                    <input matInput placeholder="Form Title" value="" formControlName="formtitle">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="Form Position" value="" formControlName="formPosition">
-                  </mat-form-field>
-                  <!-- <mat-form-field>
-                <input matInput placeholder="State" value="" formControlName="state">
-              </mat-form-field> -->
-                </div>
-                <!-- <div formArrayName='contacts'>
-              <div *ngFor="let subgroup of group.controls.contacts.controls; let idx = index;" [formGroupName]="idx">
-                <mat-form-field>
-                  <input matInput placeholder="Contact Person" value="" formControlName="contactPerson">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="Phone Number" value="" formControlName="phoneNumber">
-                </mat-form-field>
-              </div>
-              <button mat-raised-button (click)="addContact(i)">Add more Contacts</button>
-
-              
-            </div> -->
-              </fieldset>
-            </div>
-
-            <div *ngIf="selectfield(group)">
-              <fieldset>
-                <legend>
-                  <h3>{{i + 1}}</h3>
-                </legend>
-                <div>
-                  <mat-form-field>
-                    <input matInput placeholder="Street" value="" formControlName="street">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="City" value="" formControlName="city">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="State" value="" formControlName="state">
-                  </mat-form-field>
-                </div>
-                <div formArrayName='contacts'>
-                  <div *ngFor="let subgroup of group.controls.contacts.controls; let idx = index;"
-                    [formGroupName]="idx">
-                    <mat-form-field>
-                      <input matInput placeholder="Contact Person" value="" formControlName="contactPerson">
+<form class="questionnaire" [formGroup]="userForm">
+    <div>
+        <mat-card class="example-card">
+            <mat-card-header>
+                <!-- <mat-card-title>Users Creation</mat-card-title> -->
+            </mat-card-header>
+            <mat-card-content>
+                <div class="primary-container">
+                    <mat-form-field style="width: 80%;">
+                        <input style="font-size: 20px;" matInput placeholder="Questionnaire Title" value=""
+                            formControlName="questionTitle">
                     </mat-form-field>
-                    <mat-form-field>
-                      <input matInput placeholder="Phone Number" value="" formControlName="phoneNumber">
+                    <br>
+                    <mat-form-field style="width: 80%; ">
+                        <input style="font-size: 15px;" matInput placeholder="Questionnaire Description" value=""
+                            formControlName="questionDesc">
                     </mat-form-field>
-                  </div>
-                  <button mat-raised-button (click)="addContact(i)">Add more Contacts</button>
-
-
                 </div>
-              </fieldset>
-            </div>
+                <div formArrayName="address">
+                    <div class="address-container" *ngFor="let group of addressArray.controls; let i = index;"
+                        [formGroupName]="i">
+                        <div *ngIf="!selectfield(group)">
+                            <div class="form-row">
+                                <mat-label>{{i+1}}</mat-label>
+
+                                <mat-form-field class=" col-sm-8 input-width">
+                                    <input matInput placeholder="Question" value="" formControlName="question">
+                                </mat-form-field>
+                                <mat-form-field class="col">
+                                    <input matInput type="number" placeholder="Question Position" value=""
+                                        formControlName="questionPosition">
+                                </mat-form-field>
+                                <button mat-mini-fab color="warn" (click)="removeAddress(i)" aria-label="delete icon">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div *ngIf="selectfield(group)">
+                            <div class="form-row">
+                                <mat-label>{{i+1}}</mat-label>
+
+                                <mat-form-field class=" col-sm-10">
+                                    <input matInput placeholder="Form Title" value="" formControlName="formTitle">
+                                </mat-form-field>
+                                <!-- <mat-form-field>
+                                    <input matInput type="number" placeholder="Form Position" value="" formControlName="formPosition">
+                                </mat-form-field> -->
+                                <button mat-mini-fab color="primary" (click)="addContact(i)"
+                                            aria-label="add icon">
+                                            <mat-icon>add</mat-icon>
+                                        </button>
+                                <button mat-mini-fab color="warn" (click)="removeEmployee(i)"
+                                    aria-label="delete icon">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </div>
+
+                            <div class="form-element">
+                                <div formArrayName='contacts' >
+                                    <div  class="row justify-content-center" *ngFor="let subgroup of group?.controls.contacts.controls; let idx = index;"
+                                        [formGroupName]="idx">
+                                        <mat-form-field class="col-sm-6">
+                                            <input matInput placeholder="Element Title" value=""
+                                                formControlName="elementTitle">
+                                        </mat-form-field>
+                                        <mat-form-field>
+                                            <input matInput type="number" placeholder="Element Position" value=""
+                                                formControlName="elementPosition">
+                                        </mat-form-field>
+                                        <button mat-mini-fab color="" (click)="removecontact(i, idx)"
+                                            aria-label="delete icon">
+                                            <mat-icon>delete</mat-icon>
+                                        </button>
+
+                                    </div>
+                                    <!-- <button mat-raised-button (click)="addContact(i)">Add more Contacts</button> -->
 
 
+                                </div>
+                            </div>
 
-            <!-- <fieldset>
-              <legend>
-                <h3>Address: {{i + 1}}</h3>
-              </legend>
-              <div>
-                <mat-form-field>
-                  <input matInput placeholder="Street" value="" formControlName="street">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="City" value="" formControlName="city">
-                </mat-form-field>
-                <mat-form-field>
-                  <input matInput placeholder="State" value="" formControlName="state">
-                </mat-form-field>
-              </div>
-              <div formArrayName='contacts'>
-                <div *ngFor="let subgroup of group.controls.contacts.controls; let idx = index;" [formGroupName]="idx">
-                  <mat-form-field>
-                    <input matInput placeholder="Contact Person" value="" formControlName="contactPerson">
-                  </mat-form-field>
-                  <mat-form-field>
-                    <input matInput placeholder="Phone Number" value="" formControlName="phoneNumber">
-                  </mat-form-field>
+                        </div>
+
+                    </div>
                 </div>
-                <button mat-raised-button (click)="addContact(i)">Add more Contacts</button>
-
-                
-              </div>
-            </fieldset> -->
-          </div>
-        </div>
-        <div class="form-row org-desc-parent-margin">
-          <button mat-raised-button (click)="addAddress()">Add address</button>
-          <button mat-raised-button (click)="addEmployee()">Add more Employee</button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+                <div class="form-row org-desc-parent-margin text-center">
+                    <button mat-raised-button (click)="addEmployee()">Add Questionnaire</button>
+                    <button mat-raised-button (click)="addAddress()">Add New Form</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </form>
+
+
+
+
+
+
+
+
+
+
+
 <mat-card class="pre-code">
-  <mat-card-header>
-    <mat-card-title>Users Information</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <pre>{{userForm.value | json}}</pre>
-  </mat-card-content>
+    <mat-card-header>
+        <mat-card-title>Users Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <pre>{{userForm.value | json}}</pre>
+    </mat-card-content>
 </mat-card>
 <mat-card class="pre-code">
-  <mat-card-header>
-    <mat-card-title>Users Information is Valid</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <pre>{{userForm.valid | json}}</pre>
-  </mat-card-content>
+    <mat-card-header>
+        <mat-card-title>Users Information is Valid</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <pre>{{userForm.valid | json}}</pre>
+    </mat-card-content>
 </mat-card>
 <mat-card class="pre-code">
-  <mat-card-header>
-    <mat-card-title>Users Information is Invalid</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <pre>{{userForm.invalid | json}}</pre>
-  </mat-card-content>
+    <mat-card-header>
+        <mat-card-title>Users Information is Invalid</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <pre>{{userForm.invalid | json}}</pre>
+    </mat-card-content>
 </mat-card>
+
+
+
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Password</label>
+            <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Address 2</label>
+        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="gridCheck">
+            <label class="form-check-label" for="gridCheck">
+                Check me out
+            </label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
